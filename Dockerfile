@@ -1,0 +1,20 @@
+FROM arm32v7/python:3-alpine
+
+RUN set -e; \
+  apk update \
+  && apk add gcc make python3-dev musl-dev libffi-dev \
+  # TODO FIXME
+  && apk del libressl-dev \
+  && apk add openssl-dev \
+  && pip install cryptography==2.7 \
+  && apk del openssl-dev \
+  && apk add libressl-dev
+
+WORKDIR /usr/src/app
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+CMD [ "python", "bot.py" ]
