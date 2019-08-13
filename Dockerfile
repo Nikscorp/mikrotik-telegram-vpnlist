@@ -1,5 +1,7 @@
 FROM arm32v7/python:3-alpine
 
+COPY --from=hypriot/rpi-alpine /usr/bin/qemu-arm-static /usr/bin/qemu-arm-static
+
 RUN set -e; \
   apk update \
   && apk add gcc make python3-dev musl-dev libffi-dev \
