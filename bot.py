@@ -12,7 +12,6 @@ from tld import get_tld
 
 TOKEN = os.environ['TOKEN']
 PROXY_URL = os.environ['PROXY_URL']
-REQUEST_KWARGS = {'proxy_url': PROXY_URL}
 MIKROTIK_ADDR = os.environ['MIKROTIK_ADDR']
 MIKROTIK_USER = os.environ['MIKROTIK_USER']
 MIKROTIK_PORT = int(os.environ['MIKROTIK_PORT'])
@@ -161,7 +160,7 @@ help_handler_ = CommandHandler('help', start_handler)
 unblock_handler_ = CommandHandler('unblock', unblock_handler, pass_args=True)
 unknown_handler_ = MessageHandler(Filters.all, unknown_handler)
 
-updater = Updater(token=TOKEN, request_kwargs=REQUEST_KWARGS)
+updater = Updater(token=TOKEN)
 dispatcher = updater.dispatcher
 
 dispatcher.add_handler(start_handler_)
