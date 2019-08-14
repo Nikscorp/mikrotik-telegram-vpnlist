@@ -11,7 +11,6 @@ from tld import get_tld
 
 
 TOKEN = os.environ['TOKEN']
-PROXY_URL = os.environ['PROXY_URL']
 MIKROTIK_ADDR = os.environ['MIKROTIK_ADDR']
 MIKROTIK_USER = os.environ['MIKROTIK_USER']
 MIKROTIK_PORT = int(os.environ['MIKROTIK_PORT'])
