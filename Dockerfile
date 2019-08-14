@@ -14,11 +14,6 @@ RUN set -e; \
 
 WORKDIR /usr/src/app
 
-RUN apk add git \
-  && git clone https://github.com/Nikscorp/pynacl.git \
-  && cd pynacl \
-  && python setup.py install
-
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
