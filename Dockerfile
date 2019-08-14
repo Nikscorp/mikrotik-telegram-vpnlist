@@ -4,7 +4,7 @@ COPY --from=hypriot/rpi-alpine /usr/bin/qemu-arm-static /usr/bin/qemu-arm-static
 
 RUN set -e; \
   apk update \
-  && apk add gcc make python3-dev musl-dev libffi-dev \
+  && apk add gcc make python3-dev musl-dev git libffi-dev \
   # TODO FIXME
   && apk del libressl-dev \
   && apk add openssl-dev \
