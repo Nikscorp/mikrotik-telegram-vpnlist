@@ -5,7 +5,7 @@ COPY --from=hypriot/rpi-alpine /usr/bin/qemu-arm-static /usr/bin/qemu-arm-static
 RUN set -e; \
   apk update \
   && apk add gcc make python3-dev musl-dev libffi-dev \
-  # see https://github.com/pyca/cryptography/issues/4264
+  # TODO FIXME
   && apk del libressl-dev \
   && apk add openssl-dev \
   && pip install cryptography==2.7 \
@@ -13,6 +13,11 @@ RUN set -e; \
   && apk add libressl-dev
 
 WORKDIR /usr/src/app
+
+RUN apk add git \
+  && git clone https://github.com/Nikscorp/pynacl.git \
+  && cd pynacl \
+  && python setup.py install
 
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
