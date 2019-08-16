@@ -1,16 +1,4 @@
-FROM arm32v7/python:3-alpine
-
-COPY --from=hypriot/rpi-alpine /usr/bin/qemu-arm-static /usr/bin/qemu-arm-static
-
-RUN set -e; \
-  apk update \
-  && apk add gcc make python3-dev musl-dev git libffi-dev \
-  # TODO FIXME
-  && apk del libressl-dev \
-  && apk add openssl-dev \
-  && pip install cryptography==2.7 \
-  && apk del openssl-dev \
-  && apk add libressl-dev
+FROM nikscorp/base-tg-py-bot-arm:latest
 
 WORKDIR /usr/src/app
 
