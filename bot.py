@@ -7,7 +7,6 @@ from typing import Callable, Dict, Iterable, List, Tuple
 import paramiko
 from telegram import Bot, Update
 from telegram.ext import CommandHandler, Filters, MessageHandler, Updater
-from tld import get_tld
 
 
 TOKEN = os.environ['TOKEN']
@@ -40,8 +39,7 @@ class Host:
         self.fill_ips()
 
     def fill_hostname(self) -> None:
-        res = get_tld(self.url, as_object=True, fix_protocol=True)
-        self.hostname = res.parsed_url.netloc
+        self.hostname = self.url.split("//")[-1].split("/")[0].split(':')[0]
 
     def fill_ips(self) -> None:
         _, _, self.ips = socket.gethostbyname_ex(self.hostname)
