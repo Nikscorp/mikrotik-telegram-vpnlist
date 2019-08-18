@@ -1,0 +1,8 @@
+version: 3
+services:
+    mikrotik-telegram-vpnlist:
+        restart: always
+        container_name: mikrotik-bot
+        volumes:
+            - '/home/pi/.ssh/:/root/.ssh/'
+        image: nikscorp/mikrotik-telegram-vpnlist
